@@ -1,0 +1,23 @@
+{
+  "name": "agar-patch",
+  "version": "0.1.0",
+  "dependencies": {
+    "escodegen": "latest",
+    "esprima": "latest",
+    "esquery": "latest",
+    "estemplate": "latest",
+    "eswalk": "latest",
+    "jquery": "^2.1.4"
+  },
+  "devDependencies": {
+    "coffee-script": "latest",
+    "iced-coffee-script": "latest",
+    "browserify": "latest",
+    "brfs": "latest",
+    "grunt": "latest",
+    "grunt-browserify": "latest",
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-iced-coffee": "latest"
+  }
+}
