@@ -7,8 +7,8 @@
  
 # The technical difficulty: 
 
-So `agar.io` now dumps the main script (which I want to patch) into the main page (which I *cannot* change). How on earth do you change a HTML file before Chrome parses and executes it? I used to replace the separate main script file using Chrome's [WebRequest][https://developer.chrome.com/extensions/webRequest#type-BlockingResponse] API to my own patched version using Data URI's, but this 
+I used to replace the **separate main script file** using Chrome's [WebRequest](https://developer.chrome.com/extensions/webRequest#type-BlockingResponse) API to my own patched version using Data URI's, but `agar.io` now dumps the main script (which I want to patch) into the main HTML page (which I *cannot* change using this method).
 
-I already figured out what changes to make to the main script.
-Someone help me get the "change the HTML file" part done and we could keep using this plugin.
-Before that, my 
+I already figured out what (new) changes to make to the main script.
+
+I just need to know how to modify the HTML file before Chrome parses it.
