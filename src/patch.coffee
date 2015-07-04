@@ -11,36 +11,35 @@ genOpt =
   format:
     compact: true
 
-QUERY = "AssignmentExpression[operator='=']"
+QUERY = "ExpressionStatement > LogicalExpression[operator='&&']"
 PATTERN = ///
-  (\w+)\s* # newScale
-  =\s*
-  Math\.pow\(\s*
-    Math\.min\(\s*
-      ([\d\.]+)\s* # 64
-      /\s*
-      \1\s* # newScale
-      ,\s*
-      ([\d\.]+)\s* # 1
-    \)\s*
-    ,\s*
-    ([\d\.]+)\s* # 0.4
-  \)\s*
+  (1)\s* # 1
+  >\s*
+  (\w+)\s* # E
+  &&\s*
+  \(\s*
+    \2\s* # E
+    =\s*
+    \1\s* #1
+  \)
 ///
-TMPL = tmplExpr estemplate.compile '''
-  (<%= orig %>) / window.agarZoom
-'''
 
 patch = (src) ->
   srcTree = esprima.parse src
   eswalk.walkAddParent srcTree, (->)
   exprs = esquery.match srcTree, esquery.parse QUERY
+  # console.log exprs
   for expr in exprs
     exprStr = escodegen.generate expr.parent, genOpt
+    #console.log exprStr
     if match = exprStr.match PATTERN
-      newScale = match[1]
-      expr.right = TMPL orig: expr.right
-      # console.log escodegen.generate expr.parent
-  escodegen.generate srcTree
+      expr.right = expr.left
+      console.log escodegen.generate expr.parent
+  srcMod1 = escodegen.generate srcTree
+  srcMod2 = srcMod1.replace /localStorage/g, 'fuckLocalStorage'
+  srcMod3 = """
+  window.fuckLocalStorage = {};
+  #{srcMod2}
+  """
 
 module.exports = patch
