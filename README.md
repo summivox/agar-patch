@@ -8,7 +8,7 @@
  
 # The technical difficulty: 
 
-I used to replace the **separate main script file** using Chrome's [WebRequest][] API to my own patched version using Data URI's, but `agar.io` now dumps the main script (which I want to patch) into the main HTML page (which I *cannot* change using this method).
+I used to replace the **separate main script file** using Chrome's [WebRequest][] API to my own patched version using Data URI's, but `agar.io` now dumps the main script (which I want to patch) into the **main HTML page** (which I *cannot* change using this method).
 
 I already figured out what (new) changes to make to the main script.
 
